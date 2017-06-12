@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Article Management System</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}"/>
+</head>
+<body>
+
+	<h1>Article Management System!</h1>
+	
+	<table>
+		<tr th:object="${article}">
+			<td th:text="*{id}"></td>
+			<td th:text="*{title}"></td>
+			<td th:text="*{description}"></td>
+			<td th:text="*{author}"></td>
+			<td>
+				<img src="" th:src="*{thumbnail}"/>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
