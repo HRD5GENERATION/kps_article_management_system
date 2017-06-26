@@ -13,4 +13,6 @@ public interface ArticleService {
 	boolean save(Article article);
 
 	boolean remove(int id);
+	
+	boolean update(Article article);
 }

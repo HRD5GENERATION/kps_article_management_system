@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title th:text="${addStatus==true?'Add Article':'Update Article'}">Article Management System</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}"/>
+</head>
+<body>
+	<h1 th:text="${addStatus==true?'Add Article':'Update Article'}">Add Article</h1>
+	
+	<form th:action="${addStatus==true?'/article/save':'/article/update'}" th:object="${article}" method="POST" enctype="multipart/form-data">
+		<input type="text" th:field="*{id}"/>
+		<input type="text" th:field="*{title}"/>
+		<input type="text" th:field="*{description}"/>
+		<input type="text" th:field="*{author}"/>
+		<input type="file" name="file"/>
+		<input type="submit" value="SAVE" th:value="${addStatus==true?'Add':'Update'}"/>
+		<!-- <input type="submit" value="SAVE" th:value="${addStatus==true?'Add':'Update'}" th:attr="value=${addStatus==true?'Add':'Update'}"/> --> 
+	</form>
+</body>
+</html>

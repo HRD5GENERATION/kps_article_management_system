@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kps.model.Article;
 import com.kps.service.ArticleService;
+import com.kps.service.upload.UploadService;
 
 @Controller
 public class ArticleController {
@@ -53,12 +58,46 @@ public class ArticleController {
 		
 		return "redirect:/article";
 	}
+	
+	@GetMapping("/article/add")
+	public String saveArticlePage(ModelMap model){
+		model.addAttribute("article", new Article());
+		model.addAttribute("addStatus", true);
+		return "addarticle";
+	}
+	
+	@Autowired
+	private UploadService uploadService;
+	
+	@PostMapping("/article/save")
+	public String actionSave(@RequestParam("file") MultipartFile file, Article article, BindingResult result){
+		if(result.hasErrors()){
+			return "redirect:/article/add";
+		}
+		String thumbnail = uploadService.upload(file);
+		article.setThumbnail(thumbnail);
+		
+		if(articleService.save(article)){
+			System.out.println("Success!");
+		}
+		return "redirect:/article";
+	}
+	
+	@GetMapping("/article/edit/{id}")
+	public String saveArticlePage(@PathVariable("id") Integer id, ModelMap model){
+		model.addAttribute("article", articleService.findOne(id));
+		model.addAttribute("addStatus", false);
+		return "addarticle";
+	}
+	
+	@PostMapping("/article/update")
+	public String actionUpdate(Article article, BindingResult result){
+		if(result.hasErrors()){
+			return "redirect:/article";
+		}
+		if(articleService.update(article)){
+			System.out.println("success!");
+		}
+		return "redirect:/article";
+	}
 }
-
-
-
-
-
-
-
-

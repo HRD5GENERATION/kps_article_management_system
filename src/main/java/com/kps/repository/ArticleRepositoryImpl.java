@@ -1,4 +1,4 @@
-package com.kps.repository;
+/*package com.kps.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
 			article.setTitle(faker.book().title());
 			article.setAuthor(faker.book().author());
 			article.setDescription(faker.lorem().sentence());
-			article.setThumbnail("https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg");
+			article.setThumbnail(faker.internet().image(100, 100, false, null));
 			articles.add(article);
 		}
 	}
@@ -45,8 +45,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
 
 	@Override
 	public boolean save(Article article) {
-		// TODO Auto-generated method stub
-		return false;
+		return articles.add(article);
 	}
 
 	@Override
@@ -60,4 +59,16 @@ public class ArticleRepositoryImpl implements ArticleRepository{
 		return false;
 	}
 
+	@Override
+	public boolean update(Article article) {
+		for(int i=0; i<articles.size(); i++){
+			if(article.getId() == articles.get(i).getId()){
+				articles.set(i, article);
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
+*/

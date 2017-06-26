@@ -31,13 +31,17 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	public boolean save(Article article) {
-		// TODO Auto-generated method stub
-		return false;
+		return articleRepository.save(article);
 	}
 
 	@Override
 	public boolean remove(int id) {
 		return articleRepository.remove(id);
+	}
+
+	@Override
+	public boolean update(Article article) {
+		return articleRepository.update(article);
 	}
 
 }

@@ -7,7 +7,8 @@
 </head>
 <body>
 
-	<h1>Article Management System!</h1>
+	<h1>Article Management System !</h1>
+	<a href="/article/add">Add Article</a>
 	<table>
 		<tr>
 			<th>Id</th>
@@ -28,22 +29,10 @@
 			<td>
 				<!-- <a href="#" th:href="@{/article/view(id=*{id})}">View</a> -->
 				<a href="#" th:href="@{/article/view/{id}(id=*{id})}">View</a>
+				<a href="#" th:href="@{/article/edit/{id}(id=*{id})}">Edit</a>
 				<a href="#" th:href="@{/article/remove/{id}(id=*{id})}">Remove</a>
 			</td>
 		</tr>
 	</table>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 </body>
 </html>
