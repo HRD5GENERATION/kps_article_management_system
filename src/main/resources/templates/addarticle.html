@@ -9,13 +9,37 @@
 	<h1 th:text="${addStatus==true?'Add Article':'Update Article'}">Add Article</h1>
 	
 	<form th:action="${addStatus==true?'/article/save':'/article/update'}" th:object="${article}" method="POST" enctype="multipart/form-data">
-		<input type="text" th:field="*{id}"/>
-		<input type="text" th:field="*{title}"/>
-		<input type="text" th:field="*{description}"/>
-		<input type="text" th:field="*{author}"/>
-		<input type="file" name="file"/>
-		<input type="submit" value="SAVE" th:value="${addStatus==true?'Add':'Update'}"/>
-		<!-- <input type="submit" value="SAVE" th:value="${addStatus==true?'Add':'Update'}" th:attr="value=${addStatus==true?'Add':'Update'}"/> --> 
+		<table>
+			<tr>
+				<td>Id: </td>
+				<td>
+					<input type="text" th:field="*{id}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Title: </td>
+				<td>
+					<input type="text" th:field="*{title}"/>
+					<span th:if="${ #fields.hasErrors('title') }" th:errors="*{title}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Description: </td>
+				<td><input type="text" th:field="*{description}"/></td>
+			</tr>
+			<tr>
+				<td>Author: </td>
+				<td><input type="text" th:field="*{author}"/></td>
+			</tr>
+			<tr>
+				<td>Thumbnail: </td>
+				<td><input type="file" name="file"/></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td><input type="submit" value="SAVE" th:value="${addStatus==true?'Add':'Update'}"/></td>
+			</tr>		
+		</table> 
 	</form>
 </body>
 </html>

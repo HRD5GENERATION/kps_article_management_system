@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1"/>
+	<meta charset="utf-8"/>
 	<title>Article Management System</title>
 	<link rel="stylesheet" th:href="@{/css/index.css}"/>
 </head>
@@ -11,12 +11,12 @@
 	<a href="/article/add">Add Article</a>
 	<table>
 		<tr>
-			<th>Id</th>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Author</th>
-			<th>Thumbnail</th>
-			<th>Action</th>
+			<th th:text="#{table.id}">Id</th>
+			<th th:text="#{table.title}">Title</th>
+			<th th:text="#{table.desc}">Description</th>
+			<th th:text="#{table.author}">Author</th>
+			<th th:text="#{table.thumbnail}">Thumbnail</th>
+			<th th:text="#{table.action}">Action</th>
 		</tr>
 		<tr th:each="article : ${articles}" th:object="${article}">
 			<td th:text="*{id}"></td>

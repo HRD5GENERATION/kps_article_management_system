@@ -2,8 +2,11 @@ package com.kps.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,9 +73,12 @@ public class ArticleController {
 	private UploadService uploadService;
 	
 	@PostMapping("/article/save")
-	public String actionSave(@RequestParam("file") MultipartFile file, Article article, BindingResult result){
+	public String actionSave(@RequestParam("file") MultipartFile file, 
+			@Valid Article article, BindingResult result, Model model){
 		if(result.hasErrors()){
-			return "redirect:/article/add";
+			model.addAttribute("article", article);
+			model.addAttribute("addStatus", true);
+			return "addarticle";
 		}
 		String thumbnail = uploadService.upload(file);
 		article.setThumbnail(thumbnail);

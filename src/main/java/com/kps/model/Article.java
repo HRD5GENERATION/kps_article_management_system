@@ -1,9 +1,14 @@
 package com.kps.model;
 
+import javax.validation.constraints.Size;
+
 public class Article {
 	
 	private int id;
+	
+	@Size(min=3, max=10/*, message = "{0} must between {1} and {2} characters long."*/)
 	private String title;
+	
 	private String description;
 	private String thumbnail;
 	private String author;
