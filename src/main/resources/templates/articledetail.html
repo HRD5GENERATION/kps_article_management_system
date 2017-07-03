@@ -4,22 +4,31 @@
 	<meta charset="ISO-8859-1"/>
 	<title>Article Management System</title>
 	<link rel="stylesheet" th:href="@{/css/index.css}"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css"/>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
 </head>
 <body>
+	<div class="ui stackable menu">
+		<div class="item">
+			<img style="height: 30px; width: 30px;"
+				src="https://semantic-ui.com/images/logo.png" />
+		</div>
+		<a href="/" class="item active">Articles</a> <a href="/category"
+			class="item">Categories</a> <a href="/about" class="item">About</a>
+	</div>
 
-	<h1 th:text="#{view.detail}">Article Management System!</h1>
+	<div class="ui container">
+		<div th:object="${article}">
+			<img th:src="*{thumbnail}" style="width: 300px; height: 300px;"/>
+			<p th:inline="text">ID: [[*{id}]]</p>
+			<p th:inline="text">Title: [[*{title}]]</p>
+			<p th:inline="text">Description: [[*{description}]]</p>
+		</div>
+	</div>
 	
-	<table>
-		<tr th:object="${article}">
-			<td th:text="*{id}"></td>
-			<td th:text="*{title}"></td>
-			<td th:text="*{description}"></td>
-			<td th:text="*{author}"></td>
-			<td>
-				<img src="" th:src="*{thumbnail}"/>
-			</td>
-		</tr>
-	</table>
-
+	<div class="ui container" th:fragment="footer">
+		<h3>@KompongSom Footer</h3>
+	</div>
+	
 </body>
 </html>
