@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8"/>
-	<title>Article Management System</title>
-	<link rel="stylesheet" th:href="@{/css/index.css}"/>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css"/>
-	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
-</head>
-<body>	
-	<div class="ui stackable menu">
-		<div class="item">
-			<img style="height: 30px; width: 30px;"
-				src="https://semantic-ui.com/images/logo.png" />
-		</div>
-		<a href="/" class="item active">Articles</a> 
-		<a href="/category" class="item">Categories</a> <a href="/about" class="item">About</a>
-	</div>
-	
-	<div class="ui container">	
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
+	  <head>
+	  	<title>View Article</title>
+	  </head>
+<body>
+	<div class="ui container" layout:fragment="content">
 		<h1>Article Management System</h1>
 		<a class="ui primary basic button" href="/article/add" th:href="@{/article/add}">
 			<i class="write icon"></i>
@@ -33,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:fragment="articleFragment" th:each="article : ${articles}" th:object="${article}">
+				<tr th:fragment="atfragment" th:each="article : ${articles}" th:object="${article}">
 					<td th:text="${articleStat.count}">Id</td>
 					<td th:text="*{title}">Title</td>
 					<td th:text="*{description}">Description</td>
@@ -46,7 +35,7 @@
 					</td>
 				</tr>	
 			</tbody>	
-			<tfoot>
+			<tfoot th:fragment="tfoot">
 				 <tr>
 				 	<th colspan="4">
 				      <div class="ui small right floated pagination menu">
@@ -69,10 +58,5 @@
 			</tfoot>
 		</table>
 	</div>
-	
-	<div class="ui container" th:fragment="footer">
-		<h3>@KompongSom Footer</h3>
-	</div>
-	
 </body>
 </html>

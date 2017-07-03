@@ -99,7 +99,7 @@ public class ArticleController {
 			model.addAttribute("addStatus", false);
 			return "addarticle";
 		}
-		if(file.getSize() != 0){
+		if(!file.isEmpty()){
 			String thumbnail = uploadService.upload(file);
 			article.setThumbnail(thumbnail);
 		}

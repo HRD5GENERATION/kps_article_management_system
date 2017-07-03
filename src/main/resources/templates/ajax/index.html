@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Hello World</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		(function(){
+			
+			$.get('ajaxfragment', function(resp){
+				console.log(resp);
+			});
+			
+			/* $.ajax({
+				method: 'GET',
+				url: 'ajax',
+				success: function(response){
+					var tr = '';
+					response.forEach(function(d){
+						tr += '<tr><td>'+d.id+'</td><td>'+d.title+'</td></tr>'
+					});
+					$('tbody').html(tr);
+				},
+				error: function(error){
+					console.log(error);
+				}
+			}); */
+		})();
+	</script>
+</body>
+</html>
