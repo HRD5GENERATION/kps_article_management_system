@@ -18,6 +18,7 @@
 					<th th:text="#{index.table.id}">No</th>
 					<th th:text="#{index.table.title}">Title</th>
 					<th th:text="#{index.table.desc}">Description</th>
+					<th th:text="#{index.table.category}">Category</th>
 					<th th:text="#{index.table.action}">Action</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 					<td th:text="${articleStat.count}">Id</td>
 					<td th:text="*{title}">Title</td>
 					<td th:text="*{description}">Description</td>
+					<td th:text="*{category.name}">Category</td>
 					<td>
 						<div class="ui small basic icon buttons">
 							<a class="ui green basic button" th:href="@{article/{id}(id=*{id})}"><i class="unhide icon"></i></a>
